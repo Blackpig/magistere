@@ -8,9 +8,10 @@ use BlackpigCreatif\Magistere\Filament\Actions\ConfirmBookingAction;
 use BlackpigCreatif\Magistere\Filament\Actions\MoveToWaitlistAction;
 use BlackpigCreatif\Magistere\Filament\Resources\BookingResource\Pages\EditBooking;
 use Livewire\Livewire;
+use Workbench\App\Models\User;
 
 beforeEach(function (): void {
-    $this->actingAs(\Workbench\App\Models\User::factory()->create());
+    $this->actingAs(User::factory()->create());
 });
 
 it('can confirm a pending booking', function (): void {

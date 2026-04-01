@@ -19,6 +19,8 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -50,7 +52,7 @@ class CourseResource extends Resource
                         ->required()
                         ->maxLength(255)
                         ->live(onBlur: true)
-                        ->afterStateUpdated(function (\Filament\Schemas\Components\Utilities\Set $set, ?string $state): void {
+                        ->afterStateUpdated(function (Set $set, ?string $state): void {
                             $set('slug', Str::slug($state ?? ''));
                         })
                         ->columnSpanFull(),
@@ -83,7 +85,7 @@ class CourseResource extends Resource
 
                     DateTimePicker::make('published_at')
                         ->nullable()
-                        ->visible(fn (\Filament\Schemas\Components\Utilities\Get $get): bool => $get('status') === CourseStatus::Active->value),
+                        ->visible(fn (Get $get): bool => $get('status') === CourseStatus::Active->value),
                 ]),
 
             Section::make('Description')

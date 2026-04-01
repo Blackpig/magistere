@@ -2,6 +2,7 @@
 
 namespace BlackpigCreatif\Magistere\Models;
 
+use App\Models\User;
 use BlackpigCreatif\Magistere\Enums\PaymentMethod;
 use BlackpigCreatif\Magistere\Enums\PaymentType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -63,8 +64,8 @@ class Payment extends Model
 
     public function recordedBy(): BelongsTo
     {
-        /** @var class-string<\Illuminate\Database\Eloquent\Model> $userModel */
-        $userModel = config('auth.providers.users.model', \App\Models\User::class);
+        /** @var class-string<Model> $userModel */
+        $userModel = config('auth.providers.users.model', User::class);
 
         return $this->belongsTo($userModel, 'recorded_by');
     }

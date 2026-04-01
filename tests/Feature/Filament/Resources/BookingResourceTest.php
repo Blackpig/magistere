@@ -8,10 +8,12 @@ use BlackpigCreatif\Magistere\Filament\Resources\BookingResource\Pages\CreateBoo
 use BlackpigCreatif\Magistere\Filament\Resources\BookingResource\Pages\EditBooking;
 use BlackpigCreatif\Magistere\Filament\Resources\BookingResource\Pages\ListBookings;
 use BlackpigCreatif\Magistere\Models\Booking;
+use Filament\Actions\DeleteAction;
 use Livewire\Livewire;
+use Workbench\App\Models\User;
 
 beforeEach(function (): void {
-    $this->actingAs(\Workbench\App\Models\User::factory()->create());
+    $this->actingAs(User::factory()->create());
 });
 
 it('can list bookings', function (): void {
@@ -58,7 +60,7 @@ it('can soft delete a booking', function (): void {
     $booking = BookingFactory::new()->for($workshop)->create();
 
     Livewire::test(EditBooking::class, ['record' => $booking->getRouteKey()])
-        ->callAction(\Filament\Actions\DeleteAction::class);
+        ->callAction(DeleteAction::class);
 
     expect($booking->fresh()->trashed())->toBeTrue();
 });

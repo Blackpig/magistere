@@ -3,6 +3,7 @@
 use BlackpigCreatif\Magistere\Database\Factories\CourseFactory;
 use BlackpigCreatif\Magistere\Database\Factories\ExpressionOfInterestFactory;
 use BlackpigCreatif\Magistere\Database\Factories\WorkshopFactory;
+use BlackpigCreatif\Magistere\Models\ExpressionOfInterest;
 
 it('generates a token on creation', function (): void {
     $eoi = ExpressionOfInterestFactory::new()
@@ -71,7 +72,7 @@ it('notifiable scope returns only new interest EOIs', function (): void {
     ExpressionOfInterestFactory::new()->for($workshop)->waitlist()->create();
     ExpressionOfInterestFactory::new()->for($workshop)->converted()->create();
 
-    $notifiable = \BlackpigCreatif\Magistere\Models\ExpressionOfInterest::notifiable()->get();
+    $notifiable = ExpressionOfInterest::notifiable()->get();
 
     expect($notifiable)->toHaveCount(1);
 });

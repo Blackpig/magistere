@@ -8,6 +8,7 @@ use BlackpigCreatif\Magistere\Enums\EoiStatus;
 use BlackpigCreatif\Magistere\Enums\WorkshopStatus;
 use BlackpigCreatif\Magistere\Livewire\BookingForm;
 use BlackpigCreatif\Magistere\Models\Booking;
+use BlackpigCreatif\Magistere\Models\Workshop;
 use Livewire\Livewire;
 
 it('renders the booking form', function (): void {
@@ -159,7 +160,7 @@ it('calculates the subtotal correctly based on attendee count', function (): voi
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
-function openWorkshop(): \BlackpigCreatif\Magistere\Models\Workshop
+function openWorkshop(): Workshop
 {
     return WorkshopFactory::new()
         ->for(CourseFactory::new()->state(['max_capacity' => 20]))

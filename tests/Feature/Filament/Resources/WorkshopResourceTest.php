@@ -7,10 +7,12 @@ use BlackpigCreatif\Magistere\Filament\Resources\WorkshopResource\Pages\CreateWo
 use BlackpigCreatif\Magistere\Filament\Resources\WorkshopResource\Pages\EditWorkshop;
 use BlackpigCreatif\Magistere\Filament\Resources\WorkshopResource\Pages\ListWorkshops;
 use BlackpigCreatif\Magistere\Models\Workshop;
+use Filament\Actions\DeleteAction;
 use Livewire\Livewire;
+use Workbench\App\Models\User;
 
 beforeEach(function (): void {
-    $this->actingAs(\Workbench\App\Models\User::factory()->create());
+    $this->actingAs(User::factory()->create());
 });
 
 it('can list workshops', function (): void {
@@ -64,7 +66,7 @@ it('can soft delete a workshop', function (): void {
     $workshop = WorkshopFactory::new()->for(CourseFactory::new())->create();
 
     Livewire::test(EditWorkshop::class, ['record' => $workshop->getRouteKey()])
-        ->callAction(\Filament\Actions\DeleteAction::class);
+        ->callAction(DeleteAction::class);
 
     expect($workshop->fresh()->trashed())->toBeTrue();
 });
