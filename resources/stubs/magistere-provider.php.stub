@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Providers;
+
+use BlackpigCreatif\Magistere\MagisterePlugin;
+use Filament\Panel;
+use Filament\PanelProvider;
+use Illuminate\Support\ServiceProvider;
+
+/**
+ * Magistere Plugin Provider
+ *
+ * Register the Magistere plugin with your Filament panel(s).
+ * Add this provider to the panel's plugins() in your PanelProvider.
+ *
+ * Example usage in your PanelProvider:
+ *
+ *   public function panel(Panel $panel): Panel
+ *   {
+ *       return $panel
+ *           // ... your existing config
+ *           ->plugins([
+ *               MagisterePlugin::make()
+ *                   ->navigationGroup('Events')
+ *                   ->withSettingsPage()
+ *                   ->withCategoryResource()
+ *                   ->withCalendarWidget()
+ *                   ->withStatsWidget()
+ *                   ->withUpcomingWorkshopsWidget(),
+ *           ]);
+ *   }
+ */
+class MagistereProvider extends ServiceProvider
+{
+    public function register(): void
+    {
+        //
+    }
+
+    public function boot(): void
+    {
+        //
+    }
+}

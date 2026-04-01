@@ -1,5 +1,7 @@
 <?php
 
-use VendorName\Skeleton\Tests\TestCase;
+use BlackpigCreatif\Magistere\Tests\FilamentTestCase;
+use BlackpigCreatif\Magistere\Tests\TestCase;
 
-uses(TestCase::class)->in(__DIR__);
+uses(TestCase::class)->in('Feature/Models', 'Feature/Livewire');
+uses(FilamentTestCase::class)->in('Feature/Filament');

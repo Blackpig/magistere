@@ -1,7 +1,8 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace BlackpigCreatif\Magistere\Tests;
 
+use BlackpigCreatif\Magistere\MagistereServiceProvider;
 use BladeUI\Heroicons\BladeHeroiconsServiceProvider;
 use BladeUI\Icons\BladeIconsServiceProvider;
 use Filament\Actions\ActionsServiceProvider;
@@ -19,7 +20,6 @@ use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\Concerns\WithWorkbench;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
-use VendorName\Skeleton\SkeletonServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -30,9 +30,13 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'VendorName\\Skeleton\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
-        );
+        Factory::guessFactoryNamesUsing(function (string $modelName): string {
+            if (str_starts_with($modelName, 'Workbench\\')) {
+                return 'Workbench\\Database\\Factories\\' . class_basename($modelName) . 'Factory';
+            }
+
+            return 'BlackpigCreatif\\Magistere\\Database\\Factories\\' . class_basename($modelName) . 'Factory';
+        });
     }
 
     protected function getPackageProviders($app)
@@ -51,17 +55,18 @@ class TestCase extends Orchestra
             SupportServiceProvider::class,
             TablesServiceProvider::class,
             WidgetsServiceProvider::class,
-            SkeletonServiceProvider::class,
+            MagistereServiceProvider::class,
         ];
 
         sort($providers);
 
-        return $providers;
+        return array_merge(parent::getPackageProviders($app), $providers);
     }
 
     public function getEnvironmentSetUp($app): void
     {
         $app['config']->set('database.default', 'testing');
+        $app['config']->set('app.key', 'base64:' . base64_encode(random_bytes(32)));
     }
 
     protected function defineDatabaseMigrations(): void
