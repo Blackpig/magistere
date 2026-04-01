@@ -2,6 +2,7 @@
 
 namespace BlackpigCreatif\Magistere;
 
+use Blackpig\Atelier\Facades\Atelier;
 use BlackpigCreatif\Magistere\Atelier\Blocks\BookingFormBlock;
 use BlackpigCreatif\Magistere\Atelier\Blocks\EoiFormBlock;
 use BlackpigCreatif\Magistere\Atelier\Blocks\WorkshopListingBlock;
@@ -60,11 +61,11 @@ class MagistereServiceProvider extends PackageServiceProvider
         // Register blocks only when the Atelier page builder is installed.
         // Atelier's block registry class is resolved from the container;
         // adapt this binding to match Atelier's actual registration API.
-        if (! class_exists(\Blackpig\Atelier\Facades\Atelier::class)) {
+        if (! class_exists(Atelier::class)) {
             return;
         }
 
-        \Blackpig\Atelier\Facades\Atelier::registerBlocks([
+        Atelier::registerBlocks([
             WorkshopListingBlock::class,
             EoiFormBlock::class,
             BookingFormBlock::class,

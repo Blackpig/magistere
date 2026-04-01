@@ -6,6 +6,7 @@ use BlackpigCreatif\Magistere\Enums\EoiSource;
 use BlackpigCreatif\Magistere\Enums\EoiStatus;
 use BlackpigCreatif\Magistere\Models\ExpressionOfInterest;
 use BlackpigCreatif\Magistere\Models\Workshop;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class EoiForm extends Component
@@ -67,7 +68,7 @@ class EoiForm extends Component
         $this->submitted = true;
     }
 
-    public function render(): \Illuminate\View\View
+    public function render(): View
     {
         return view('magistere::livewire.eoi-form');
     }

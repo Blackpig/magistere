@@ -1,5 +1,7 @@
 <?php
 
+use BlackpigCreatif\Magistere\Ephemeride\WorkshopProvider;
+
 return [
 
     'currency' => 'EUR',
@@ -53,7 +55,7 @@ return [
     | Add 'completed' to show historical workshops in the calendar.
     */
     'ephemeride' => [
-        'provider' => \BlackpigCreatif\Magistere\Ephemeride\WorkshopProvider::class,
+        'provider' => WorkshopProvider::class,
         'workshop_statuses' => ['published', 'confirmed'],
     ],
 

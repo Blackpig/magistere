@@ -9,9 +9,10 @@ use BlackpigCreatif\Magistere\Filament\Actions\DuplicateWorkshopAction;
 use BlackpigCreatif\Magistere\Filament\Resources\WorkshopResource\Pages\EditWorkshop;
 use BlackpigCreatif\Magistere\Models\Workshop;
 use Livewire\Livewire;
+use Workbench\App\Models\User;
 
 beforeEach(function (): void {
-    $this->actingAs(\Workbench\App\Models\User::factory()->create());
+    $this->actingAs(User::factory()->create());
 });
 
 it('can confirm a published workshop', function (): void {

@@ -10,6 +10,7 @@ use BlackpigCreatif\Magistere\Models\ExpressionOfInterest;
 use BlackpigCreatif\Magistere\Models\Extra;
 use BlackpigCreatif\Magistere\Models\Workshop;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class BookingForm extends Component
@@ -224,7 +225,7 @@ class BookingForm extends Component
         $this->submitted = true;
     }
 
-    public function render(): \Illuminate\View\View
+    public function render(): View
     {
         return view('magistere::livewire.booking-form', [
             'extras' => $this->workshop->extras,
