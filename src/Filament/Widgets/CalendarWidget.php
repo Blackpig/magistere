@@ -15,7 +15,7 @@ use Filament\Widgets\Widget;
  */
 class CalendarWidget extends Widget
 {
-    protected static string $view = 'magistere::widgets.calendar';
+    protected string $view = 'magistere::widgets.calendar';
 
     protected static ?int $sort = 5;
 
